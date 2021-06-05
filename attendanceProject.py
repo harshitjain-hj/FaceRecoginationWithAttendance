@@ -29,13 +29,9 @@ def findEncodings(images):
 
 #   Marking Attendance
 def markAttendance(name):
-<<<<<<< Updated upstream
-    with open('Attendance.csv','r+') as f:
-=======
     dt_now = datetime.today()
     f_name = dt_now.strftime("%b-%d-%Y")
     with open('Attendance/'+f_name,'w+') as f:
->>>>>>> Stashed changes
         myDataList = f.readlines()
         nameList = []
         # fetch data from list one by one
@@ -93,5 +89,5 @@ while True:
             markAttendance(name)
 
     # Show webcam screen
-    cv2.imshow('Face Recognition',img)
+    cv2.imshow('Face Recognition', img)
     cv2.waitKey(1)
