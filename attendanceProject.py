@@ -31,14 +31,13 @@ def findEncodings(images):
 def markAttendance(name):
     dt_now = datetime.today()
     f_name = dt_now.strftime("%b-%d-%Y")
-    with open('Attendance/'+f_name,'w+') as f:
+    open('Attendance/' + f_name + '.csv', 'a+')
+    with open('Attendance/'+f_name+'.csv','r+') as f:
         myDataList = f.readlines()
         nameList = []
-        # fetch data from list one by one
         for line in myDataList:
             entry = line.split(',')
             nameList.append(entry[0])
-        #     Check whether name is in the list or not
         if name not in nameList:
             now = datetime.now()
             dtString = now.strftime('%H:%M:%S')
