@@ -4,7 +4,7 @@ import face_recognition
 import os
 from datetime import datetime
 
-# from PIL import ImageGrab
+
 #  Getting Images and create List
 path = 'ImagesAttendance'
 images = []
@@ -18,7 +18,8 @@ for cl in myList:
     images.append(curImg)
     classNames.append(os.path.splitext(cl)[0])
 print(classNames)
-# Encoding faces
+
+#Encoding faces
 def findEncodings(images):
     encodeList = []
     for img in images:
@@ -27,7 +28,7 @@ def findEncodings(images):
         encodeList.append(encode)
     return encodeList
 
-#   Marking Attendance
+#Marking Attendance
 def markAttendance(name):
     dt_now = datetime.today()
     f_name = dt_now.strftime("%b-%d-%Y")
@@ -43,19 +44,18 @@ def markAttendance(name):
             dtString = now.strftime('%H:%M:%S')
             f.writelines(f'\n{name},{dtString}')
 
-# markAttendance('Rahul Singh')
-# #### FOR CAPTURING SCREEN RATHER THAN WEBCAM
+# # FOR CAPTURING SCREEN RATHER THAN WEBCAM
 # # def captureScreen(bbox=(300,300,690+300,530+300)):
 # #     capScr = np.array(ImageGrab.grab(bbox))
 # #     capScr = cv2.cvtColor(capScr, cv2.COLOR_RGB2BGR)
 # #     return capScr
-#
+
 encodeListKnown = findEncodings(images)
 print('Encoding Complete')
 
 # Initializing webcam
 capture = cv2.VideoCapture(0)
-#
+
 while True:
     success, img = capture.read()
     #img = captureScreen()
