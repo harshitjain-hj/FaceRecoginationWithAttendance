@@ -4,6 +4,7 @@ import os
 cam = cv2.VideoCapture(0)
 path = "ImagesAttendance"
 
+print("Enter your name and semester in following format - <Name>-<Semester>")
 name = input("Enter Name:")
 
 # cv2.nameWindow("Webcam")
