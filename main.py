@@ -2,7 +2,8 @@ import cv2
 import numpy as np
 import face_recognition
 import os
-from datetime import datetime
+import attendance
+import encode
 
 
 #  Getting Images and create List
@@ -10,7 +11,6 @@ path = 'Database'
 images = []
 classNames = []
 myList = os.listdir(path)
-# print(myList)
 
 # Importing Images one by one
 for cl in myList:
@@ -19,35 +19,7 @@ for cl in myList:
     classNames.append(os.path.splitext(cl)[0])
 print(classNames)
 
-#Encoding faces
-def findEncodings(images):
-    encodeList = []
-    for img in images:
-        img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
-        encode = face_recognition.face_encodings(img)[0]
-        encodeList.append(encode)
-    return encodeList
-
-#Marking Attendance
-def markAttendance(name):
-    id=name
-    dt_now = datetime.today()
-    f_name = dt_now.strftime("%b-%d-%Y")
-    open('Attendance/' + f_name + '.csv', 'a+')
-    with open('Attendance/'+f_name+'.csv','r+') as f:
-        myDataList = f.readlines()
-        nameList = []
-        for line in myDataList:
-            entry = line.split(',')
-            nameList.append(entry[0])
-        if id not in nameList:
-            detail = id.split('-')
-            now = datetime.now()
-            dtString = now.strftime('%H:%M:%S')
-            f.writelines(f'\n{id},{detail[0]},{dtString},{detail[1]}')
-
-
-encodeListKnown = findEncodings(images)
+encodeListKnown = encode.faceEncodings(images)
 print('Encoding Complete')
 
 # Initializing webcam
@@ -80,7 +52,7 @@ while True:
             cv2.rectangle(img,(x1,y1),(x2,y2),(0,255,0),2)
             cv2.rectangle(img,(x1,y2-35),(x2,y2),(0,255,0),cv2.FILLED)
             cv2.putText(img,name,(x1+6,y2-6),cv2.FONT_HERSHEY_COMPLEX,0.45,(255,255,255),1)
-            markAttendance(name)
+            attendance.markAttendance(name)
 
     # Show webcam screen
     cv2.imshow('Face Recognition', img)
