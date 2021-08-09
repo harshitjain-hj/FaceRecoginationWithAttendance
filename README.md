@@ -39,12 +39,16 @@ Project Overview
 ### Features/Support
 
 1. For testing purpose we have created basics.py to understand the working of algo and packages that we used.
-2. We have made attendance to store in different files based on dates so that it is easy to check.
+
+2. Made attendance to store in different files based on dates so that it is easy to check.
+
 3. Face enrollment feature that allows new faces to recognise and add new entries in the datatbase.
+
 4. Created executable file for easy addition of images by using computer camera and asking name.
+
 5. Takes the exact time while the attendance is taken better evaluation.
 
-6. Sir inorder to take attendance now we are taking class as well while uploading data to database and now we have one more entry in csv for classes to distinguish
+6. Inorder to take attendance now we are taking class as well while uploading data to database and now we have one more entry in csv for classes to distinguish
 
 7. To ensure uniqueness and merging of different sheets to gather we have introduce identity as well in the sheets
 
